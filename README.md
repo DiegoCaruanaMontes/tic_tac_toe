@@ -1,13 +1,3 @@
-# TicTacToe
+# tic_tac_toe
 
-Simple *Tic Tac Toe* game
-
----
-
-Compile the project:
-
-    javac -d out src/main/java/com/tictactoe/*.java
-
-Run the project: 
-
-    java -cp out com.tictactoe.Main
+Simple game in Python.
