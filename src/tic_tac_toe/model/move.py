@@ -1,10 +1,11 @@
-class Move():
+class Move:
     """
     Represents the action of a player putting a piece in position (x,y)
     """
+
     x: int
     y: int
-    player: bool 
+    player: bool
 
     def __init__(self, x: int, y: int, player: bool):
         self.x = x

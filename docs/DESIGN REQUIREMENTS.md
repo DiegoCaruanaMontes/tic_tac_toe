@@ -21,8 +21,9 @@ View
 ## MVP Characteristics
 
 Table 3x3
-Always starts X
-True/False - X/O
+Always starts A
+None/True/False - EMPTY/A/B
 Just One Board and it ends
+Turn changes before checking the result
 
 
