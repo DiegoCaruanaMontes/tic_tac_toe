@@ -69,7 +69,7 @@ def test_move_in_turn(x1, y1, x2, y2):
         ),
     ],
 )
-def test_result_A(winner: GameState, moves: list[int, int, bool]):
+def test_result(winner: GameState, moves: list[int, int, bool]):
     board = Board()
 
     # moves = [(0, 0, True), (1, 0, False), (1, 1, True), (2, 0, False), (2, 2, True)]
