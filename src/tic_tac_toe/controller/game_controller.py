@@ -1,21 +1,25 @@
 from tic_tac_toe.model.board import Board
+from tic_tac_toe.model.game_state import GameState
+
 from tic_tac_toe.view.game_view import GameView
 
-class GameController():
+
+class GameController:
     def __init__(self):
         self._board = Board()
         self._view = GameView()
 
     def run(self):
-
-        while ...: # until end of game
+        game_state = GameState.ONGOING
+        while game_state is GameState.ONGOING:  # until end of game
             # Update view
             self._view.update(...)
 
             # Read view input
-            ... = self._view.read()
+            x, y, player = self._view.read()
 
             # Change model
-            ... # parse input
-            ... # execute move
-            ... # check result
+            valid_move, move = self._board.check_move(x, y, player)  # check move
+            if valid_move:
+                self._board.move(move)  # execute move
+                game_state = self._board.result()  # check result

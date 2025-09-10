@@ -20,18 +20,26 @@ class Board:
         self._board = [[Cell() for _ in range(self._size)] for _ in range(self._size)]
         self._turn = True
 
+    def check_move(self, x: int, y: int, player: bool):
+        move = Move(x, y, player)
+
+        # Check turn
+        if not move.check_turn(self._turn):
+            return False, None
+        # Check position in move is in range
+        if not move.check_range(self._size):
+            return False, None
+        # Check position in board is free
+        if not self._check_position_is_free(move.x, move.y):
+            return False, None
+        return True, move
+
     # Function for changing the state of a particular cell
     def move(self, move: Move):
-        # Check turn
-        if move.check_turn(self._turn):
-            # Check position in move is in range
-            if move.check_range(self._size):
-                # Check position in board is free
-                if self._check_position_is_free(move.x, move.y):
-                    # Put a piece
-                    self._put_piece(move)
-                    # Change turn
-                    self._change_turn()
+        # Put a piece
+        self._put_piece(move)
+        # Change turn
+        self._change_turn()
 
     def _check_position_is_free(self, x: int, y: int):
         return self._board[x][y].is_EMPTY()

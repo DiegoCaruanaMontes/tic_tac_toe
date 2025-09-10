@@ -5,24 +5,52 @@ from tic_tac_toe.model.board import Board
 from tic_tac_toe.model.game_state import GameState
 
 
-@pytest.mark.parametrize("x1, y1, x2, y2", [(0, 0, 0, 1), (2, 0, 2, 2)])
-def test_move_in_turn(x1, y1, x2, y2):
+@pytest.mark.parametrize(
+    "moves",
+    [
+        [
+            (0, 0, True, True),
+            (0, 1, False, True),
+            (2, 2, False, False),
+            (2, 2, True, True),
+            (1, 1, True, False),
+        ],
+    ],
+)
+def test_check_move_turn(moves: list[int, int, bool, bool]):
     board = Board()
+    for x, y, player, is_valid in moves:
+        valid_move, m = board.check_move(x, y, player)
+        assert valid_move == is_valid
+        if valid_move:
+            board.move(m)
 
-    # First move A
-    move = Move(x1, y1, True)
-    board.move(move)
-    assert not board._check_position_is_free(x1, y1)
 
-    # A shouldn't be able to move out of its turn
-    move = Move(x2, y2, True)
-    board.move(move)
-    assert board._check_position_is_free(x2, y2)
+@pytest.mark.parametrize("x, y", [(0, 0), (2, 2), (2, 0)])
+def test_check_move_range(x, y):
+    board = Board()
+    valid_move, _ = board.check_move(x, y, True)
+    assert valid_move
 
-    # Second move B
-    move = Move(x2, y2, False)
-    board.move(move)
-    assert not board._check_position_is_free(x2, y2)
+@pytest.mark.parametrize(
+    "moves",
+    [
+        [
+            (0, 0, True, True),
+            (0, 1, False, True),
+            (0, 0, True, False),
+            (0, 1, True, False),
+            (1, 1, True, True),
+        ],
+    ],
+)
+def test_check_move_position_is_free(moves: list[int, int, bool, bool]):
+    board = Board()
+    for x, y, player, is_valid in moves:
+        valid_move, m = board.check_move(x, y, player)
+        assert valid_move == is_valid
+        if valid_move:
+            board.move(m)
 
 
 @pytest.mark.parametrize(
@@ -72,12 +100,10 @@ def test_move_in_turn(x1, y1, x2, y2):
 def test_result(winner: GameState, moves: list[int, int, bool]):
     board = Board()
 
-    # moves = [(0, 0, True), (1, 0, False), (1, 1, True), (2, 0, False), (2, 2, True)]
-    print(moves)
     for m in moves:
         assert board.result() is GameState.ONGOING
-        print(m)
-        move = Move(*m)
-        board.move(move)
+        valid_move, m = board.check_move(*m)
+        assert valid_move
+        board.move(m)
 
     assert board.result() is winner
