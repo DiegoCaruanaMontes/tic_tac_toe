@@ -1,6 +1,5 @@
 import pytest
 
-from tic_tac_toe.model.move import Move
 from tic_tac_toe.model.board import Board
 from tic_tac_toe.model.game_state import GameState
 
@@ -31,6 +30,7 @@ def test_check_move_range(x, y):
     board = Board()
     valid_move, _ = board.check_move(x, y, True)
     assert valid_move
+
 
 @pytest.mark.parametrize(
     "moves",
