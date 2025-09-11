@@ -12,6 +12,7 @@ class GameController:
     def run(self):
         game_state = GameState.ONGOING
         while game_state is GameState.ONGOING:  # until end of game
+            # board_state = self._board.__str__()
             # Update view
             self._view.update(...)
 
@@ -23,3 +24,5 @@ class GameController:
             if valid_move:
                 self._board.move(move)  # execute move
                 game_state = self._board.result()  # check result
+
+        self._view.update(...)

@@ -22,7 +22,7 @@ View
 
 Table 3x3
 Always starts A
-None/True/False - EMPTY/A/B
+None/True/False - EMPTY/A/B - -/X/O
 Just One Board and it ends
 Turn changes before checking the result
 

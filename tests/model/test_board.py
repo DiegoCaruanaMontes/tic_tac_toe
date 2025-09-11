@@ -5,6 +5,29 @@ from tic_tac_toe.model.game_state import GameState
 
 
 @pytest.mark.parametrize(
+    "moves, expected",
+    [
+        (
+            (
+                (0, 0, True),
+                (0, 1, False),
+                (2, 2, True),
+            ),
+            "\nX O - \n\n- - - \n\n- - X \n\n",
+        ),
+    ],
+)
+def test_str(moves, expected):
+    board = Board()
+    for x, y, player in moves:
+        _, m = board.check_move(x, y, player)
+        if True:
+            board.move(m)
+    print(str(board))
+    assert str(board) == expected
+
+
+@pytest.mark.parametrize(
     "moves",
     [
         [

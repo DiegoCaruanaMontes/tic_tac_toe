@@ -13,6 +13,9 @@ class GameState(Enum):
     A = "A"
     B = "B"
 
+    def __str__(self):
+        return self.value
+
     @classmethod
     def from_state(cls, state: State | None = None) -> "GameState":
         """

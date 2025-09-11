@@ -1,8 +1,9 @@
 from tic_tac_toe.view.game_view import GameView
+from tic_tac_toe.model.game_state import GameState
 
 
 class CliGameView(GameView):
-    def update(self):
+    def update(self, board_state: str, game_state: GameState):
         pass
 
     def read(self):

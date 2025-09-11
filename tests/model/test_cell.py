@@ -1,5 +1,22 @@
+import pytest
+
 from tic_tac_toe.model.state import State
 from tic_tac_toe.model.cell import Cell
+
+
+@pytest.mark.parametrize(
+    "state, expected",
+    [
+        (None, "-"),
+        (True, "X"),
+        (False, "O"),
+    ],
+)
+def test_state_str(state, expected):
+    c = Cell()
+    s = State(state)
+    c.set_state(s)
+    assert str(c) == expected
 
 
 def test_set_state():

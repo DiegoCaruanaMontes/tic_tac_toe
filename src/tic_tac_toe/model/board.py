@@ -20,6 +20,14 @@ class Board:
         self._board = [[Cell() for _ in range(self._size)] for _ in range(self._size)]
         self._turn = True
 
+    def __str__(self):
+        s = "\n"
+        for i in range(self._size):
+            for j in range(self._size):
+                s += str(self._board[i][j]) + " "
+            s += "\n\n"
+        return s
+
     def check_move(self, x: int, y: int, player: bool):
         move = Move(x, y, player)
 

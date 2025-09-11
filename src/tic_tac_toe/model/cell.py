@@ -11,6 +11,9 @@ class Cell:
     def __init__(self):
         self._state = State.EMPTY
 
+    def __str__(self):
+        return str(self._state)
+
     def set_state(self, state: State):
         self._state = state
 
