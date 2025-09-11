@@ -7,14 +7,16 @@ from tic_tac_toe.view.game_view import GameView
 class GameController:
     def __init__(self):
         self._board = Board()
-        self._view = GameView()
+
+    def set_view(self, view: GameView):
+        self._view = view
 
     def run(self):
         game_state = GameState.ONGOING
         while game_state is GameState.ONGOING:  # until end of game
             # board_state = self._board.__str__()
             # Update view
-            self._view.update(...)
+            self._view.update(self._board, game_state)
 
             # Read view input
             x, y, player = self._view.read()
@@ -25,4 +27,4 @@ class GameController:
                 self._board.move(move)  # execute move
                 game_state = self._board.result()  # check result
 
-        self._view.update(...)
+        self._view.update(self._board, game_state)
